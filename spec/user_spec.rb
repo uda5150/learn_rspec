@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe User do
   describe '#greet' do
     let(:params){{ name: 'たろう' }}
+    let(:user){ User.new(params) }
 
     context '12歳以下の場合' do
       before do
@@ -10,7 +11,6 @@ RSpec.describe User do
       end
 
       it 'ひらがなで答えること' do
-        user = User.new(params)
         expect(user.greet).to eq 'ぼくはたろうだよ。'
       end
     end
@@ -21,7 +21,6 @@ RSpec.describe User do
       end
 
       it '漢字で答えること' do
-        user = User.new(params)
         expect(user.greet).to eq '僕はたろうです。'
       end
     end
